@@ -1,0 +1,2754 @@
+<!DOCTYPE html xmlns='http://www.w3.org/1999/xhtml'>
+
+<html>
+  <head>
+    <title>JNL Converter</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript">
+      const journals = [
+        {
+          name: "Accounts of Chemical Research",
+          coden: "achre4",
+          two_letter_code: "ar",
+        },
+        {
+          name: "Accounts of Materials Research",
+          coden: "amrcda",
+          two_letter_code: "mr",
+        },
+        {
+          name: "ACS Agricultural Science & Technology",
+          coden: "aastgj",
+          two_letter_code: "as",
+        },
+        {
+          name: "ACS Applied Bio Materials",
+          coden: "aabmcb",
+          two_letter_code: "mt",
+        },
+        {
+          name: "ACS Applied Electronic Materials",
+          coden: "aaembp",
+          two_letter_code: "el",
+        },
+        {
+          name: "ACS Applied Energy Materials",
+          coden: "aaemcq",
+          two_letter_code: "ae",
+        },
+        {
+          name: "ACS Applied Materials & Interfaces",
+          coden: "aamick",
+          two_letter_code: "am",
+        },
+        {
+          name: "ACS Applied Nano Material",
+          coden: "aanmf6",
+          two_letter_code: "an",
+        },
+        {
+          name: "ACS Applied Polymer Materials",
+          coden: "aapmcd",
+          two_letter_code: "ap",
+        },
+        {
+          name: "ACS Biomaterials Science & Engineering",
+          coden: "abseba",
+          two_letter_code: "ab",
+        },
+        {
+          name: "ACS Bio & Med Chem Au",
+          coden: "abmcb8",
+          two_letter_code: "bg",
+        },
+        { name: "ACS Catalysis", coden: "accacs", two_letter_code: "cs" },
+        { name: "ACS Central Science", coden: "acscii", two_letter_code: "oc" },
+        {
+          name: "ACS Chemical Biology",
+          coden: "acbcct",
+          two_letter_code: "cb",
+        },
+        {
+          name: "ACS Chemical Health & Safety",
+          coden: "achsc5",
+          two_letter_code: "hs",
+        },
+        {
+          name: "ACS Chemical Neuroscience",
+          coden: "acncdm",
+          two_letter_code: "cn",
+        },
+        {
+          name: "ACS Combinatorial Science",
+          coden: "acsccc",
+          two_letter_code: "co",
+        },
+        {
+          name: "ACS Earth and Space Chemistry",
+          coden: "aesccq",
+          two_letter_code: "sp",
+        },
+        { name: "ACS Energy Letters", coden: "aelccp", two_letter_code: "nz" },
+        { name: "ACS Engineering Au", coden: "aeacb3", two_letter_code: "eg" },
+        {
+          name: "ACS Environmental Au",
+          coden: "aeacc4",
+          two_letter_code: "vg",
+        },
+        {
+          name: "ACS ES&T Engineering",
+          coden: "aeecco",
+          two_letter_code: "ee",
+        },
+        { name: "ACS ES&T Water", coden: "aewcaa", two_letter_code: "ew" },
+        {
+          name: "ACS Food Science & Technology",
+          coden: "afsthl",
+          two_letter_code: "fs",
+        },
+        {
+          name: "ACS Infectious Diseases",
+          coden: "aidcbc",
+          two_letter_code: "id",
+        },
+        { name: "ACS Macro Letters", coden: "amlccd", two_letter_code: "mz" },
+        { name: "ACS Materials Au", coden: "amacgu", two_letter_code: "mg" },
+        {
+          name: "ACS Materials Letters",
+          coden: "amlcef",
+          two_letter_code: "tz",
+        },
+        {
+          name: "ACS Measurement Science Au",
+          coden: "amachv",
+          two_letter_code: "tg",
+        },
+        {
+          name: "ACS Medicinal Chemistry Letters",
+          coden: "amclct",
+          two_letter_code: "ml",
+        },
+        { name: "ACS Nano", coden: "ancac3", two_letter_code: "nn" },
+        { name: "ACS Nanoscience Au", coden: "anaccx", two_letter_code: "ng" },
+        { name: "ACS Omega", coden: "acsodf", two_letter_code: "ao" },
+        {
+          name: "ACS Organic & Inorganic Au",
+          coden: "aoiab5",
+          two_letter_code: "gg",
+        },
+        {
+          name: "ACS Pharmacology & Translational Science",
+          coden: "aptsfn",
+          two_letter_code: "pt",
+        },
+        { name: "ACS Photonics", coden: "apchd5", two_letter_code: "ph" },
+        {
+          name: "ACS Physical Chemistry Au",
+          coden: "apcach",
+          two_letter_code: "pg",
+        },
+        { name: "ACS Polymers Au", coden: "apaccd", two_letter_code: "lg" },
+        { name: "ACS Sensors", coden: "ascefj", two_letter_code: "se" },
+        {
+          name: "ACS Sustainable Chemistry & Engineering",
+          coden: "ascecg",
+          two_letter_code: "sc",
+        },
+        {
+          name: "ACS Synthetic Biology",
+          coden: "asbcd6",
+          two_letter_code: "sb",
+        },
+        {
+          name: "Analytical Chemistry",
+          coden: "ancham",
+          two_letter_code: "ac",
+        },
+        { name: "Biochemistry", coden: "bichaw", two_letter_code: "bi" },
+        {
+          name: "Bioconjugate Chemistry",
+          coden: "bcches",
+          two_letter_code: "bc",
+        },
+        { name: "Biomacromolecules", coden: "bomaf6", two_letter_code: "bm" },
+        {
+          name: "Chemical Research in Toxicology",
+          coden: "crtoec",
+          two_letter_code: "tx",
+        },
+        { name: "Chemical Reviews", coden: "chreay", two_letter_code: "cr" },
+        {
+          name: "Chemistry of Materials",
+          coden: "cmatex",
+          two_letter_code: "cm",
+        },
+        {
+          name: "Crystal Growth & Design",
+          coden: "cgdefu",
+          two_letter_code: "cg",
+        },
+        { name: "Energy & Fuels", coden: "enfuem", two_letter_code: "ef" },
+        {
+          name: "Environmental Science & Technology",
+          coden: "esthag",
+          two_letter_code: "es",
+        },
+        {
+          name: "Environmental Science & Technology Letters",
+          coden: "estlcu",
+          two_letter_code: "ez",
+        },
+        {
+          name: "Industrial & Engineering Chemistry Research",
+          coden: "iecred",
+          two_letter_code: "ie",
+        },
+        { name: "Inorganic Chemistry", coden: "inocaj", two_letter_code: "ic" },
+        { name: "JACS Au", coden: "jaaucr", two_letter_code: "au" },
+        {
+          name: "Journal of Agricultural and Food Chemistry",
+          coden: "jafcau",
+          two_letter_code: "jf",
+        },
+        {
+          name: "Journal of Chemical & Engineering Data",
+          coden: "jceaax",
+          two_letter_code: "je",
+        },
+        {
+          name: "Journal of Chemical Education",
+          coden: "jceda8",
+          two_letter_code: "ed",
+        },
+        {
+          name: "Journal of Chemical Information and Modeling",
+          coden: "jcisd8",
+          two_letter_code: "ci",
+        },
+        {
+          name: "Journal of Chemical Theory and Computation",
+          coden: "jctcce",
+          two_letter_code: "ct",
+        },
+        {
+          name: "Journal of Medicinal Chemistry",
+          coden: "jmcmar",
+          two_letter_code: "jm",
+        },
+        {
+          name: "Journal of Natural Products",
+          coden: "jnprdf",
+          two_letter_code: "np",
+        },
+        {
+          name: "Journal of Organic Chemistry",
+          coden: "joceah",
+          two_letter_code: "jo",
+        },
+        {
+          name: "Journal of Physical Chemistry A",
+          coden: "jpcafh",
+          two_letter_code: "jx",
+        },
+        {
+          name: "Journal of Physical Chemistry B",
+          coden: "jpcbfk",
+          two_letter_code: "jp",
+        },
+        {
+          name: "Journal of Physical Chemistry C",
+          coden: "jpccck",
+          two_letter_code: "jy",
+        },
+        {
+          name: "Journal of Physical Chemistry Letters",
+          coden: "jpclcd",
+          two_letter_code: "jz",
+        },
+        {
+          name: "Journal of Proteome Research",
+          coden: "jprobs",
+          two_letter_code: "pr",
+        },
+        {
+          name: "Journal of the American Chemical Society",
+          coden: "jacsat",
+          two_letter_code: "ja",
+        },
+        {
+          name: "Journal of the American Society for Mass Spectrometry",
+          coden: "jamsef",
+          two_letter_code: "js",
+        },
+        { name: "Langmuir", coden: "langd5", two_letter_code: "la" },
+        { name: "Macromolecules", coden: "mamobx", two_letter_code: "ma" },
+        {
+          name: "Molecular Pharmaceutics",
+          coden: "mpohbp",
+          two_letter_code: "mp",
+        },
+        { name: "Nano Letters", coden: "nalefd", two_letter_code: "nl" },
+        { name: "Organic Letters", coden: "orlef7", two_letter_code: "ol" },
+        {
+          name: "Organic Process Research & Development",
+          coden: "oprdfk",
+          two_letter_code: "op",
+        },
+        { name: "Organometallics", coden: "orgnd7", two_letter_code: "om" },
+      ];
+
+      const journal_names = {
+        "accounts of chemical research": 0,
+        "accounts of materials research": 1,
+        "acs agricultural science & technology": 2,
+        "acs applied bio materials": 3,
+        "acs applied electronic materials": 4,
+        "acs applied energy materials": 5,
+        "acs applied materials & interfaces": 6,
+        "acs applied nano material": 7,
+        "acs applied polymer materials": 8,
+        "acs biomaterials science & engineering": 9,
+        "acs bio & med chem au": 10,
+        "acs catalysis": 11,
+        "acs central science": 12,
+        "acs chemical biology": 13,
+        "acs chemical health & safety": 14,
+        "acs chemical neuroscience": 15,
+        "acs combinatorial science": 16,
+        "acs earth and space chemistry": 17,
+        "acs energy letters": 18,
+        "acs engineering au": 19,
+        "acs environmental au": 20,
+        "acs es&t engineering": 21,
+        "acs es&t water": 22,
+        "acs food science & technology": 23,
+        "acs infectious diseases": 24,
+        "acs macro letters": 25,
+        "acs materials au": 26,
+        "acs materials letters": 27,
+        "acs measurement science au": 28,
+        "acs medicinal chemistry letters": 29,
+        "acs nano": 30,
+        "acs nanoscience au": 31,
+        "acs omega": 32,
+        "acs organic & inorganic au": 33,
+        "acs pharmacology & translational science": 34,
+        "acs photonics": 35,
+        "acs physical chemistry au": 36,
+        "acs polymers au": 37,
+        "acs sensors": 38,
+        "acs sustainable chemistry & engineering": 39,
+        "acs synthetic biology": 40,
+        "analytical chemistry": 41,
+        biochemistry: 42,
+        "bioconjugate chemistry": 43,
+        biomacromolecules: 44,
+        "chemical research in toxicology": 45,
+        "chemical reviews": 46,
+        "chemistry of materials": 47,
+        "crystal growth & design": 48,
+        "energy & fuels": 49,
+        "environmental science & technology": 50,
+        "environmental science & technology letters": 51,
+        "industrial & engineering chemistry research": 52,
+        "inorganic chemistry": 53,
+        "jacs au": 54,
+        "journal of agricultural and food chemistry": 55,
+        "journal of chemical & engineering data": 56,
+        "journal of chemical education": 57,
+        "journal of chemical information and modeling": 58,
+        "journal of chemical theory and computation": 59,
+        "journal of medicinal chemistry": 60,
+        "journal of natural products": 61,
+        "journal of organic chemistry": 62,
+        "journal of physical chemistry a": 63,
+        "journal of physical chemistry b": 64,
+        "journal of physical chemistry c": 65,
+        "journal of physical chemistry letters": 66,
+        "journal of proteome research": 67,
+        "journal of the american chemical society": 68,
+        "journal of the american society for mass spectrometry": 69,
+        langmuir: 70,
+        macromolecules: 71,
+        "molecular pharmaceutics": 72,
+        "nano letters": 73,
+        "organic letters": 74,
+        "organic process research & development": 75,
+        organometallics: 76,
+      };
+
+      const codens = {
+        achre4: 0,
+        amrcda: 1,
+        aastgj: 2,
+        aabmcb: 3,
+        aaembp: 4,
+        aaemcq: 5,
+        aamick: 6,
+        aanmf6: 7,
+        aapmcd: 8,
+        abseba: 9,
+        abmcb8: 10,
+        accacs: 11,
+        acscii: 12,
+        acbcct: 13,
+        achsc5: 14,
+        acncdm: 15,
+        acsccc: 16,
+        aesccq: 17,
+        aelccp: 18,
+        aeacb3: 19,
+        aeacc4: 20,
+        aeecco: 21,
+        aewcaa: 22,
+        afsthl: 23,
+        aidcbc: 24,
+        amlccd: 25,
+        amacgu: 26,
+        amlcef: 27,
+        amachv: 28,
+        amclct: 29,
+        ancac3: 30,
+        anaccx: 31,
+        acsodf: 32,
+        aoiab5: 33,
+        aptsfn: 34,
+        apchd5: 35,
+        apcach: 36,
+        apaccd: 37,
+        ascefj: 38,
+        ascecg: 39,
+        asbcd6: 40,
+        ancham: 41,
+        bichaw: 42,
+        bcches: 43,
+        bomaf6: 44,
+        crtoec: 45,
+        chreay: 46,
+        cmatex: 47,
+        cgdefu: 48,
+        enfuem: 49,
+        esthag: 50,
+        estlcu: 51,
+        iecred: 52,
+        inocaj: 53,
+        jaaucr: 54,
+        jafcau: 55,
+        jceaax: 56,
+        jceda8: 57,
+        jcisd8: 58,
+        jctcce: 59,
+        jmcmar: 60,
+        jnprdf: 61,
+        joceah: 62,
+        jpcafh: 63,
+        jpcbfk: 64,
+        jpccck: 65,
+        jpclcd: 66,
+        jprobs: 67,
+        jacsat: 68,
+        jamsef: 69,
+        langd5: 70,
+        mamobx: 71,
+        mpohbp: 72,
+        nalefd: 73,
+        orlef7: 74,
+        oprdfk: 75,
+        orgnd7: 76,
+      };
+
+      const two_letter_codes = {
+        ar: 0,
+        mr: 1,
+        as: 2,
+        mt: 3,
+        el: 4,
+        ae: 5,
+        am: 6,
+        an: 7,
+        ap: 8,
+        ab: 9,
+        bg: 10,
+        cs: 11,
+        oc: 12,
+        cb: 13,
+        hs: 14,
+        cn: 15,
+        co: 16,
+        sp: 17,
+        nz: 18,
+        eg: 19,
+        vg: 20,
+        ee: 21,
+        ew: 22,
+        fs: 23,
+        id: 24,
+        mz: 25,
+        mg: 26,
+        tz: 27,
+        tg: 28,
+        ml: 29,
+        nn: 30,
+        ng: 31,
+        ao: 32,
+        gg: 33,
+        pt: 34,
+        ph: 35,
+        pg: 36,
+        lg: 37,
+        se: 38,
+        sc: 39,
+        sb: 40,
+        ac: 41,
+        bi: 42,
+        bc: 43,
+        bm: 44,
+        tx: 45,
+        cr: 46,
+        cm: 47,
+        cg: 48,
+        ef: 49,
+        es: 50,
+        ez: 51,
+        ie: 52,
+        ic: 53,
+        au: 54,
+        jf: 55,
+        je: 56,
+        ed: 57,
+        ci: 58,
+        ct: 59,
+        jm: 60,
+        np: 61,
+        jo: 62,
+        jx: 63,
+        jp: 64,
+        jy: 65,
+        jz: 66,
+        pr: 67,
+        ja: 68,
+        js: 69,
+        la: 70,
+        ma: 71,
+        mp: 72,
+        nl: 73,
+        ol: 74,
+        op: 75,
+        om: 76,
+      };
+
+      function get_indices(journal_dict, keys) {
+        var indices = [];
+        for (let k of keys) {
+          if (k in journal_dict) {
+            indices.push(journal_dict[k]);
+          } else {
+            indices.push("-1");
+          }
+        }
+
+        return indices;
+      }
+
+      function parse_input(input) {
+        let return_type;
+        let keys = input.map((item) => item.trim().toLowerCase());
+        // .filter((item) => item != null && item != "");
+
+        if (input[0].length == 2) return_type = "two_letter_code";
+        else if (input[0].length == 6 || input[0] == "editor_choice")
+          return_type = "coden";
+        else return_type = "journal_name";
+
+        return { type: return_type, keys: keys };
+      }
+
+      // writes a conversion list to a single element
+      function write_conversion_to_element(
+        element,
+        conversions,
+        type,
+        output_idx
+      ) {
+        conversions = conversions.join("\r\n");
+        element.value = conversions;
+
+        document.getElementById(
+          "jnl-decode-output-category-name-" + output_idx
+        ).textContent = format_type(type);
+
+        document.getElementById(
+          "jnl-decode-output-category-copy-" + output_idx
+        ).style.visibility = "visible";
+
+        autosize.update(element);
+      }
+
+      function format_type(type) {
+        if (type.toLowerCase().trim() == "two_letter_code") {
+          return "Two Letter Code";
+        }
+        if (type.toLowerCase().trim() == "coden") {
+          return "CODEN";
+        } else {
+          return "Journal Name";
+        }
+      }
+
+      function convert_input(element) {
+        let input = parse_input(element.value.trim().split("\n"));
+        let indices = [];
+        let conversions = {
+          journal_names: [],
+          codens: [],
+          two_letter_codes: [],
+          input_type: input.type,
+        };
+
+        switch (input.type) {
+          case "journal_name":
+            indices = get_indices(journal_names, input.keys);
+            break;
+          case "coden":
+            indices = get_indices(codens, input.keys);
+            break;
+          case "two_letter_code":
+            indices = get_indices(two_letter_codes, input.keys);
+            break;
+        }
+
+        for (let i of indices) {
+          if (i == -1) {
+            switch (input.type) {
+              case "journal_name":
+                conversions.codens.push("");
+                conversions.two_letter_codes.push("");
+                break;
+              case "coden":
+                conversions.journal_names.push("");
+                conversions.two_letter_codes.push("");
+                break;
+              case "two_letter_code":
+                conversions.codens.push("");
+                conversions.journal_names.push("");
+                break;
+            }
+          } else {
+            conversions.journal_names.push(journals[i].name);
+            conversions.codens.push(journals[i].coden);
+            conversions.two_letter_codes.push(journals[i].two_letter_code);
+          }
+        }
+
+        return conversions;
+      }
+
+      function get_conversions(element, event, reset) {
+        // dont run unless pressing enter, backspace, delete, or paste
+        // merge these two late?R
+        if (event) {
+          if (event.type != "paste" && event.type != "keydown") return;
+        } else if (!reset && !event) {
+          return;
+        }
+
+        let output_area_element_1 = document.getElementById(
+          "jnl-decode-output-area-1"
+        );
+        let output_area_element_2 = document.getElementById(
+          "jnl-decode-output-area-2"
+        );
+
+        if (element.value == "") {
+          document.getElementById(
+            "jnl-decode-input-category-name"
+          ).textContent = "";
+          document.getElementById(
+            "jnl-decode-output-category-name-1"
+          ).textContent = "";
+          document.getElementById(
+            "jnl-decode-output-category-name-2"
+          ).textContent = "";
+          document.getElementById(
+            "jnl-decode-output-category-copy-1"
+          ).style.visibility = "hidden";
+          document.getElementById(
+            "jnl-decode-output-category-copy-2"
+          ).style.visibility = "hidden";
+          output_area_element_1.value = "";
+          output_area_element_2.value = "";
+          autosize.update(output_area_element_1);
+          autosize.update(output_area_element_2);
+          return;
+        }
+
+        let conversions = convert_input(element);
+
+        if (element.value.trim().length > 0) {
+          document.getElementById(
+            "jnl-decode-input-category-name"
+          ).textContent = format_type(conversions.input_type);
+        }
+
+        switch (conversions.input_type) {
+          case "journal_name":
+            write_conversion_to_element(
+              output_area_element_1,
+              conversions.codens,
+              "coden",
+              1
+            );
+            write_conversion_to_element(
+              output_area_element_2,
+              conversions.two_letter_codes,
+              "two_letter_code",
+              2
+            );
+            break;
+          case "coden":
+            write_conversion_to_element(
+              output_area_element_1,
+              conversions.journal_names,
+              "journal_name",
+              1
+            );
+            write_conversion_to_element(
+              output_area_element_2,
+              conversions.two_letter_codes,
+              "two_letter_code",
+              2
+            );
+            break;
+          case "two_letter_code":
+            write_conversion_to_element(
+              output_area_element_1,
+              conversions.journal_names,
+              "journal_name",
+              1
+            );
+            write_conversion_to_element(
+              output_area_element_2,
+              conversions.codens,
+              "coden",
+              2
+            );
+            break;
+          default:
+            autosize.update(output_area_element_1);
+            autosize.update(output_area_element_2);
+            return;
+        }
+      }
+
+      function run(element, event) {
+        setTimeout(function () {
+          get_conversions(element, event);
+        }, 0);
+      }
+
+      function click_to_copy(element) {
+        element.select();
+        document.execCommand("copy");
+      }
+      function reset() {
+        let e = document.getElementById("jnl-decode-input-text-area");
+        e.value = "";
+        get_conversions(e, null, true);
+        return;
+      }
+    </script>
+    <style type="text/css">
+      /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+      html {
+        font-family: sans-serif;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      article,
+      aside,
+      details,
+      figcaption,
+      figure,
+      footer,
+      header,
+      hgroup,
+      main,
+      menu,
+      nav,
+      section,
+      summary {
+        display: block;
+      }
+
+      audio,
+      canvas,
+      progress,
+      video {
+        display: inline-block;
+        vertical-align: baseline;
+      }
+
+      audio:not([controls]) {
+        display: none;
+        height: 0;
+      }
+
+      [hidden],
+      template {
+        display: none;
+      }
+
+      a {
+        background-color: transparent;
+      }
+
+      a:active,
+      a:hover {
+        outline: 0;
+      }
+
+      abbr[title] {
+        border-bottom: none;
+        text-decoration: underline;
+        text-decoration: underline dotted;
+      }
+
+      b,
+      strong {
+        font-weight: 700;
+      }
+
+      dfn {
+        font-style: italic;
+      }
+
+      h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+      }
+
+      mark {
+        background: #ff0;
+        color: #000;
+      }
+
+      small {
+        font-size: 80%;
+      }
+
+      sub,
+      sup {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+      }
+
+      sup {
+        top: -0.5em;
+      }
+
+      sub {
+        bottom: -0.25em;
+      }
+
+      img {
+        border: 0;
+      }
+
+      svg:not(:root) {
+        overflow: hidden;
+      }
+
+      figure {
+        margin: 1em 40px;
+      }
+
+      hr {
+        box-sizing: content-box;
+        height: 0;
+      }
+
+      pre {
+        overflow: auto;
+      }
+
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: monospace, monospace;
+        font-size: 1em;
+      }
+
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        color: inherit;
+        font: inherit;
+        margin: 0;
+      }
+
+      button {
+        overflow: visible;
+      }
+
+      button,
+      select {
+        text-transform: none;
+      }
+
+      button,
+      html input[type="button"],
+      input[type="reset"],
+      input[type="submit"] {
+        -webkit-appearance: button;
+        cursor: pointer;
+      }
+
+      button[disabled],
+      html input[disabled] {
+        cursor: default;
+      }
+
+      button::-moz-focus-inner,
+      input::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+      }
+
+      input {
+        line-height: normal;
+      }
+
+      input[type="checkbox"],
+      input[type="radio"] {
+        box-sizing: border-box;
+        padding: 0;
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        height: auto;
+      }
+
+      input[type="search"] {
+        -webkit-appearance: textfield;
+        box-sizing: content-box;
+      }
+
+      input[type="search"]::-webkit-search-cancel-button,
+      input[type="search"]::-webkit-search-decoration {
+        -webkit-appearance: none;
+      }
+
+      fieldset {
+        border: 1px solid silver;
+        margin: 0 2px;
+        padding: 0.35em 0.625em 0.75em;
+      }
+
+      legend {
+        border: 0;
+        padding: 0;
+      }
+
+      textarea {
+        overflow: auto;
+      }
+
+      optgroup {
+        font-weight: 700;
+      }
+
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      td,
+      th {
+        padding: 0;
+      }
+    </style>
+    <style type="text/css">
+      *,
+      :after,
+      :before {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 10px;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.42857;
+        color: #333;
+        background-color: #fff;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+      }
+
+      a {
+        color: #337ab7;
+        text-decoration: none;
+      }
+
+      a:focus,
+      a:hover {
+        color: #23527c;
+        text-decoration: underline;
+      }
+
+      a:focus {
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+      }
+
+      figure {
+        margin: 0;
+      }
+
+      img {
+        vertical-align: middle;
+      }
+
+      .img-responsive {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .img-rounded {
+        border-radius: 6px;
+      }
+
+      .img-thumbnail {
+        padding: 4px;
+        line-height: 1.42857;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        transition: all 0.2s ease-in-out;
+        display: inline-block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .img-circle {
+        border-radius: 50%;
+      }
+
+      hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 0;
+        border-top: 1px solid #eee;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+
+      .sr-only-focusable:active,
+      .sr-only-focusable:focus {
+        position: static;
+        width: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        clip: auto;
+      }
+
+      [role="button"] {
+        cursor: pointer;
+      }
+
+      .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .container:after,
+      .container:before {
+        display: table;
+        content: " ";
+      }
+
+      .container:after {
+        clear: both;
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          width: 750px;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .container {
+          width: 970px;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .container {
+          width: 1170px;
+        }
+      }
+
+      .container-fluid {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .container-fluid:after,
+      .container-fluid:before {
+        display: table;
+        content: " ";
+      }
+
+      .container-fluid:after {
+        clear: both;
+      }
+
+      .row {
+        margin-right: -15px;
+        margin-left: -15px;
+      }
+
+      .row:after,
+      .row:before {
+        display: table;
+        content: " ";
+      }
+
+      .row:after {
+        clear: both;
+      }
+
+      .row-no-gutters {
+        margin-right: 0;
+        margin-left: 0;
+      }
+
+      .row-no-gutters [class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+      }
+
+      .col-lg-1,
+      .col-lg-2,
+      .col-lg-3,
+      .col-lg-4,
+      .col-lg-5,
+      .col-lg-6,
+      .col-lg-7,
+      .col-lg-8,
+      .col-lg-9,
+      .col-lg-10,
+      .col-lg-11,
+      .col-lg-12,
+      .col-md-1,
+      .col-md-2,
+      .col-md-3,
+      .col-md-4,
+      .col-md-5,
+      .col-md-6,
+      .col-md-7,
+      .col-md-8,
+      .col-md-9,
+      .col-md-10,
+      .col-md-11,
+      .col-md-12,
+      .col-sm-1,
+      .col-sm-2,
+      .col-sm-3,
+      .col-sm-4,
+      .col-sm-5,
+      .col-sm-6,
+      .col-sm-7,
+      .col-sm-8,
+      .col-sm-9,
+      .col-sm-10,
+      .col-sm-11,
+      .col-sm-12,
+      .col-xs-1,
+      .col-xs-2,
+      .col-xs-3,
+      .col-xs-4,
+      .col-xs-5,
+      .col-xs-6,
+      .col-xs-7,
+      .col-xs-8,
+      .col-xs-9,
+      .col-xs-10,
+      .col-xs-11,
+      .col-xs-12 {
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+
+      .col-xs-1,
+      .col-xs-2,
+      .col-xs-3,
+      .col-xs-4,
+      .col-xs-5,
+      .col-xs-6,
+      .col-xs-7,
+      .col-xs-8,
+      .col-xs-9,
+      .col-xs-10,
+      .col-xs-11,
+      .col-xs-12 {
+        float: left;
+      }
+
+      .col-xs-1 {
+        width: 8.33333%;
+      }
+
+      .col-xs-2 {
+        width: 16.66667%;
+      }
+
+      .col-xs-3 {
+        width: 25%;
+      }
+
+      .col-xs-4 {
+        width: 33.33333%;
+      }
+
+      .col-xs-5 {
+        width: 41.66667%;
+      }
+
+      .col-xs-6 {
+        width: 50%;
+      }
+
+      .col-xs-7 {
+        width: 58.33333%;
+      }
+
+      .col-xs-8 {
+        width: 66.66667%;
+      }
+
+      .col-xs-9 {
+        width: 75%;
+      }
+
+      .col-xs-10 {
+        width: 83.33333%;
+      }
+
+      .col-xs-11 {
+        width: 91.66667%;
+      }
+
+      .col-xs-12 {
+        width: 100%;
+      }
+
+      .col-xs-pull-0 {
+        right: auto;
+      }
+
+      .col-xs-pull-1 {
+        right: 8.33333%;
+      }
+
+      .col-xs-pull-2 {
+        right: 16.66667%;
+      }
+
+      .col-xs-pull-3 {
+        right: 25%;
+      }
+
+      .col-xs-pull-4 {
+        right: 33.33333%;
+      }
+
+      .col-xs-pull-5 {
+        right: 41.66667%;
+      }
+
+      .col-xs-pull-6 {
+        right: 50%;
+      }
+
+      .col-xs-pull-7 {
+        right: 58.33333%;
+      }
+
+      .col-xs-pull-8 {
+        right: 66.66667%;
+      }
+
+      .col-xs-pull-9 {
+        right: 75%;
+      }
+
+      .col-xs-pull-10 {
+        right: 83.33333%;
+      }
+
+      .col-xs-pull-11 {
+        right: 91.66667%;
+      }
+
+      .col-xs-pull-12 {
+        right: 100%;
+      }
+
+      .col-xs-push-0 {
+        left: auto;
+      }
+
+      .col-xs-push-1 {
+        left: 8.33333%;
+      }
+
+      .col-xs-push-2 {
+        left: 16.66667%;
+      }
+
+      .col-xs-push-3 {
+        left: 25%;
+      }
+
+      .col-xs-push-4 {
+        left: 33.33333%;
+      }
+
+      .col-xs-push-5 {
+        left: 41.66667%;
+      }
+
+      .col-xs-push-6 {
+        left: 50%;
+      }
+
+      .col-xs-push-7 {
+        left: 58.33333%;
+      }
+
+      .col-xs-push-8 {
+        left: 66.66667%;
+      }
+
+      .col-xs-push-9 {
+        left: 75%;
+      }
+
+      .col-xs-push-10 {
+        left: 83.33333%;
+      }
+
+      .col-xs-push-11 {
+        left: 91.66667%;
+      }
+
+      .col-xs-push-12 {
+        left: 100%;
+      }
+
+      .col-xs-offset-0 {
+        margin-left: 0;
+      }
+
+      .col-xs-offset-1 {
+        margin-left: 8.33333%;
+      }
+
+      .col-xs-offset-2 {
+        margin-left: 16.66667%;
+      }
+
+      .col-xs-offset-3 {
+        margin-left: 25%;
+      }
+
+      .col-xs-offset-4 {
+        margin-left: 33.33333%;
+      }
+
+      .col-xs-offset-5 {
+        margin-left: 41.66667%;
+      }
+
+      .col-xs-offset-6 {
+        margin-left: 50%;
+      }
+
+      .col-xs-offset-7 {
+        margin-left: 58.33333%;
+      }
+
+      .col-xs-offset-8 {
+        margin-left: 66.66667%;
+      }
+
+      .col-xs-offset-9 {
+        margin-left: 75%;
+      }
+
+      .col-xs-offset-10 {
+        margin-left: 83.33333%;
+      }
+
+      .col-xs-offset-11 {
+        margin-left: 91.66667%;
+      }
+
+      .col-xs-offset-12 {
+        margin-left: 100%;
+      }
+
+      @media (min-width: 768px) {
+        .col-sm-1,
+        .col-sm-2,
+        .col-sm-3,
+        .col-sm-4,
+        .col-sm-5,
+        .col-sm-6,
+        .col-sm-7,
+        .col-sm-8,
+        .col-sm-9,
+        .col-sm-10,
+        .col-sm-11,
+        .col-sm-12 {
+          float: left;
+        }
+
+        .col-sm-1 {
+          width: 8.33333%;
+        }
+
+        .col-sm-2 {
+          width: 16.66667%;
+        }
+
+        .col-sm-3 {
+          width: 25%;
+        }
+
+        .col-sm-4 {
+          width: 33.33333%;
+        }
+
+        .col-sm-5 {
+          width: 41.66667%;
+        }
+
+        .col-sm-6 {
+          width: 50%;
+        }
+
+        .col-sm-7 {
+          width: 58.33333%;
+        }
+
+        .col-sm-8 {
+          width: 66.66667%;
+        }
+
+        .col-sm-9 {
+          width: 75%;
+        }
+
+        .col-sm-10 {
+          width: 83.33333%;
+        }
+
+        .col-sm-11 {
+          width: 91.66667%;
+        }
+
+        .col-sm-12 {
+          width: 100%;
+        }
+
+        .col-sm-pull-0 {
+          right: auto;
+        }
+
+        .col-sm-pull-1 {
+          right: 8.33333%;
+        }
+
+        .col-sm-pull-2 {
+          right: 16.66667%;
+        }
+
+        .col-sm-pull-3 {
+          right: 25%;
+        }
+
+        .col-sm-pull-4 {
+          right: 33.33333%;
+        }
+
+        .col-sm-pull-5 {
+          right: 41.66667%;
+        }
+
+        .col-sm-pull-6 {
+          right: 50%;
+        }
+
+        .col-sm-pull-7 {
+          right: 58.33333%;
+        }
+
+        .col-sm-pull-8 {
+          right: 66.66667%;
+        }
+
+        .col-sm-pull-9 {
+          right: 75%;
+        }
+
+        .col-sm-pull-10 {
+          right: 83.33333%;
+        }
+
+        .col-sm-pull-11 {
+          right: 91.66667%;
+        }
+
+        .col-sm-pull-12 {
+          right: 100%;
+        }
+
+        .col-sm-push-0 {
+          left: auto;
+        }
+
+        .col-sm-push-1 {
+          left: 8.33333%;
+        }
+
+        .col-sm-push-2 {
+          left: 16.66667%;
+        }
+
+        .col-sm-push-3 {
+          left: 25%;
+        }
+
+        .col-sm-push-4 {
+          left: 33.33333%;
+        }
+
+        .col-sm-push-5 {
+          left: 41.66667%;
+        }
+
+        .col-sm-push-6 {
+          left: 50%;
+        }
+
+        .col-sm-push-7 {
+          left: 58.33333%;
+        }
+
+        .col-sm-push-8 {
+          left: 66.66667%;
+        }
+
+        .col-sm-push-9 {
+          left: 75%;
+        }
+
+        .col-sm-push-10 {
+          left: 83.33333%;
+        }
+
+        .col-sm-push-11 {
+          left: 91.66667%;
+        }
+
+        .col-sm-push-12 {
+          left: 100%;
+        }
+
+        .col-sm-offset-0 {
+          margin-left: 0;
+        }
+
+        .col-sm-offset-1 {
+          margin-left: 8.33333%;
+        }
+
+        .col-sm-offset-2 {
+          margin-left: 16.66667%;
+        }
+
+        .col-sm-offset-3 {
+          margin-left: 25%;
+        }
+
+        .col-sm-offset-4 {
+          margin-left: 33.33333%;
+        }
+
+        .col-sm-offset-5 {
+          margin-left: 41.66667%;
+        }
+
+        .col-sm-offset-6 {
+          margin-left: 50%;
+        }
+
+        .col-sm-offset-7 {
+          margin-left: 58.33333%;
+        }
+
+        .col-sm-offset-8 {
+          margin-left: 66.66667%;
+        }
+
+        .col-sm-offset-9 {
+          margin-left: 75%;
+        }
+
+        .col-sm-offset-10 {
+          margin-left: 83.33333%;
+        }
+
+        .col-sm-offset-11 {
+          margin-left: 91.66667%;
+        }
+
+        .col-sm-offset-12 {
+          margin-left: 100%;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .col-md-1,
+        .col-md-2,
+        .col-md-3,
+        .col-md-4,
+        .col-md-5,
+        .col-md-6,
+        .col-md-7,
+        .col-md-8,
+        .col-md-9,
+        .col-md-10,
+        .col-md-11,
+        .col-md-12 {
+          float: left;
+        }
+
+        .col-md-1 {
+          width: 8.33333%;
+        }
+
+        .col-md-2 {
+          width: 16.66667%;
+        }
+
+        .col-md-3 {
+          width: 25%;
+        }
+
+        .col-md-4 {
+          width: 33.33333%;
+        }
+
+        .col-md-5 {
+          width: 41.66667%;
+        }
+
+        .col-md-6 {
+          width: 50%;
+        }
+
+        .col-md-7 {
+          width: 58.33333%;
+        }
+
+        .col-md-8 {
+          width: 66.66667%;
+        }
+
+        .col-md-9 {
+          width: 75%;
+        }
+
+        .col-md-10 {
+          width: 83.33333%;
+        }
+
+        .col-md-11 {
+          width: 91.66667%;
+        }
+
+        .col-md-12 {
+          width: 100%;
+        }
+
+        .col-md-pull-0 {
+          right: auto;
+        }
+
+        .col-md-pull-1 {
+          right: 8.33333%;
+        }
+
+        .col-md-pull-2 {
+          right: 16.66667%;
+        }
+
+        .col-md-pull-3 {
+          right: 25%;
+        }
+
+        .col-md-pull-4 {
+          right: 33.33333%;
+        }
+
+        .col-md-pull-5 {
+          right: 41.66667%;
+        }
+
+        .col-md-pull-6 {
+          right: 50%;
+        }
+
+        .col-md-pull-7 {
+          right: 58.33333%;
+        }
+
+        .col-md-pull-8 {
+          right: 66.66667%;
+        }
+
+        .col-md-pull-9 {
+          right: 75%;
+        }
+
+        .col-md-pull-10 {
+          right: 83.33333%;
+        }
+
+        .col-md-pull-11 {
+          right: 91.66667%;
+        }
+
+        .col-md-pull-12 {
+          right: 100%;
+        }
+
+        .col-md-push-0 {
+          left: auto;
+        }
+
+        .col-md-push-1 {
+          left: 8.33333%;
+        }
+
+        .col-md-push-2 {
+          left: 16.66667%;
+        }
+
+        .col-md-push-3 {
+          left: 25%;
+        }
+
+        .col-md-push-4 {
+          left: 33.33333%;
+        }
+
+        .col-md-push-5 {
+          left: 41.66667%;
+        }
+
+        .col-md-push-6 {
+          left: 50%;
+        }
+
+        .col-md-push-7 {
+          left: 58.33333%;
+        }
+
+        .col-md-push-8 {
+          left: 66.66667%;
+        }
+
+        .col-md-push-9 {
+          left: 75%;
+        }
+
+        .col-md-push-10 {
+          left: 83.33333%;
+        }
+
+        .col-md-push-11 {
+          left: 91.66667%;
+        }
+
+        .col-md-push-12 {
+          left: 100%;
+        }
+
+        .col-md-offset-0 {
+          margin-left: 0;
+        }
+
+        .col-md-offset-1 {
+          margin-left: 8.33333%;
+        }
+
+        .col-md-offset-2 {
+          margin-left: 16.66667%;
+        }
+
+        .col-md-offset-3 {
+          margin-left: 25%;
+        }
+
+        .col-md-offset-4 {
+          margin-left: 33.33333%;
+        }
+
+        .col-md-offset-5 {
+          margin-left: 41.66667%;
+        }
+
+        .col-md-offset-6 {
+          margin-left: 50%;
+        }
+
+        .col-md-offset-7 {
+          margin-left: 58.33333%;
+        }
+
+        .col-md-offset-8 {
+          margin-left: 66.66667%;
+        }
+
+        .col-md-offset-9 {
+          margin-left: 75%;
+        }
+
+        .col-md-offset-10 {
+          margin-left: 83.33333%;
+        }
+
+        .col-md-offset-11 {
+          margin-left: 91.66667%;
+        }
+
+        .col-md-offset-12 {
+          margin-left: 100%;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .col-lg-1,
+        .col-lg-2,
+        .col-lg-3,
+        .col-lg-4,
+        .col-lg-5,
+        .col-lg-6,
+        .col-lg-7,
+        .col-lg-8,
+        .col-lg-9,
+        .col-lg-10,
+        .col-lg-11,
+        .col-lg-12 {
+          float: left;
+        }
+
+        .col-lg-1 {
+          width: 8.33333%;
+        }
+
+        .col-lg-2 {
+          width: 16.66667%;
+        }
+
+        .col-lg-3 {
+          width: 25%;
+        }
+
+        .col-lg-4 {
+          width: 33.33333%;
+        }
+
+        .col-lg-5 {
+          width: 41.66667%;
+        }
+
+        .col-lg-6 {
+          width: 50%;
+        }
+
+        .col-lg-7 {
+          width: 58.33333%;
+        }
+
+        .col-lg-8 {
+          width: 66.66667%;
+        }
+
+        .col-lg-9 {
+          width: 75%;
+        }
+
+        .col-lg-10 {
+          width: 83.33333%;
+        }
+
+        .col-lg-11 {
+          width: 91.66667%;
+        }
+
+        .col-lg-12 {
+          width: 100%;
+        }
+
+        .col-lg-pull-0 {
+          right: auto;
+        }
+
+        .col-lg-pull-1 {
+          right: 8.33333%;
+        }
+
+        .col-lg-pull-2 {
+          right: 16.66667%;
+        }
+
+        .col-lg-pull-3 {
+          right: 25%;
+        }
+
+        .col-lg-pull-4 {
+          right: 33.33333%;
+        }
+
+        .col-lg-pull-5 {
+          right: 41.66667%;
+        }
+
+        .col-lg-pull-6 {
+          right: 50%;
+        }
+
+        .col-lg-pull-7 {
+          right: 58.33333%;
+        }
+
+        .col-lg-pull-8 {
+          right: 66.66667%;
+        }
+
+        .col-lg-pull-9 {
+          right: 75%;
+        }
+
+        .col-lg-pull-10 {
+          right: 83.33333%;
+        }
+
+        .col-lg-pull-11 {
+          right: 91.66667%;
+        }
+
+        .col-lg-pull-12 {
+          right: 100%;
+        }
+
+        .col-lg-push-0 {
+          left: auto;
+        }
+
+        .col-lg-push-1 {
+          left: 8.33333%;
+        }
+
+        .col-lg-push-2 {
+          left: 16.66667%;
+        }
+
+        .col-lg-push-3 {
+          left: 25%;
+        }
+
+        .col-lg-push-4 {
+          left: 33.33333%;
+        }
+
+        .col-lg-push-5 {
+          left: 41.66667%;
+        }
+
+        .col-lg-push-6 {
+          left: 50%;
+        }
+
+        .col-lg-push-7 {
+          left: 58.33333%;
+        }
+
+        .col-lg-push-8 {
+          left: 66.66667%;
+        }
+
+        .col-lg-push-9 {
+          left: 75%;
+        }
+
+        .col-lg-push-10 {
+          left: 83.33333%;
+        }
+
+        .col-lg-push-11 {
+          left: 91.66667%;
+        }
+
+        .col-lg-push-12 {
+          left: 100%;
+        }
+
+        .col-lg-offset-0 {
+          margin-left: 0;
+        }
+
+        .col-lg-offset-1 {
+          margin-left: 8.33333%;
+        }
+
+        .col-lg-offset-2 {
+          margin-left: 16.66667%;
+        }
+
+        .col-lg-offset-3 {
+          margin-left: 25%;
+        }
+
+        .col-lg-offset-4 {
+          margin-left: 33.33333%;
+        }
+
+        .col-lg-offset-5 {
+          margin-left: 41.66667%;
+        }
+
+        .col-lg-offset-6 {
+          margin-left: 50%;
+        }
+
+        .col-lg-offset-7 {
+          margin-left: 58.33333%;
+        }
+
+        .col-lg-offset-8 {
+          margin-left: 66.66667%;
+        }
+
+        .col-lg-offset-9 {
+          margin-left: 75%;
+        }
+
+        .col-lg-offset-10 {
+          margin-left: 83.33333%;
+        }
+
+        .col-lg-offset-11 {
+          margin-left: 91.66667%;
+        }
+
+        .col-lg-offset-12 {
+          margin-left: 100%;
+        }
+      }
+    </style>
+
+    <style type="text/css">
+      /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+      @media print {
+        *,
+        :after,
+        :before {
+          color: #000 !important;
+          text-shadow: none !important;
+          background: transparent !important;
+          box-shadow: none !important;
+        }
+
+        a,
+        a:visited {
+          text-decoration: underline;
+        }
+
+        a[href]:after {
+          content: " (" attr(href) ")";
+        }
+
+        abbr[title]:after {
+          content: " (" attr(title) ")";
+        }
+
+        a[href^="#"]:after,
+        a[href^="javascript:"]:after {
+          content: "";
+        }
+
+        blockquote,
+        pre {
+          border: 1px solid #999;
+          page-break-inside: avoid;
+        }
+
+        thead {
+          display: table-header-group;
+        }
+
+        img,
+        tr {
+          page-break-inside: avoid;
+        }
+
+        img {
+          max-width: 100% !important;
+        }
+
+        h2,
+        h3,
+        p {
+          orphans: 3;
+          widows: 3;
+        }
+
+        h2,
+        h3 {
+          page-break-after: avoid;
+        }
+
+        .navbar {
+          display: none;
+        }
+
+        .btn > .caret,
+        .dropup > .btn > .caret {
+          border-top-color: #000 !important;
+        }
+
+        .label {
+          border: 1px solid #000;
+        }
+
+        .table {
+          border-collapse: collapse !important;
+        }
+
+        .table td,
+        .table th {
+          background-color: #fff !important;
+        }
+
+        .table-bordered td,
+        .table-bordered th {
+          border: 1px solid #ddd !important;
+        }
+      }
+    </style>
+    <style type="text/css">
+      /* overrides for Eloqua */
+      body .container,
+      body .container-fluid,
+      body .col-xs-1,
+      body .col-xs-2,
+      body .col-xs-3,
+      body .col-xs-4,
+      body .col-xs-5,
+      body .col-xs-6,
+      body .col-xs-7,
+      body .col-xs-8,
+      body .col-xs-9,
+      body .col-xs-10,
+      body .col-xs-11,
+      body .col-xs-12 {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    </style>
+    <style type="text/css">
+      html,
+      body {
+        min-width: 260px;
+        min-height: 100%;
+        padding: 0;
+        margin: 0 auto;
+      }
+
+      @media screen and (max-width: 480px) {
+        /* @-ms-viewport {
+        width: auto;
+        } */
+
+        /* FIXME */
+        /* https://github.com/microsoft/vscode/issues/54515 */
+
+        @viewport {
+          width: 320px;
+        }
+      }
+
+      a {
+        color: #145c9e;
+      }
+
+      .hovered:hover {
+        filter: brightness(80%);
+      }
+
+      @media screen and (max-width: 480px) {
+        .elq-form .field-style {
+          width: 96% !important;
+        }
+      }
+
+      .hide-in-desktop {
+        display: none;
+        max-height: 0px;
+      }
+    </style>
+    <style id="media-query" type="text/css">
+      @media (max-width: 520px) {
+        .hide-in-mobile {
+          min-height: 0px;
+          max-height: 0px;
+          max-width: 0px;
+          display: none;
+          overflow: hidden;
+          font-size: 0px;
+        }
+
+        .hide-in-desktop {
+          display: block !important;
+          max-height: none !important;
+        }
+      }
+    </style>
+    <style id="asset-specific-css">
+      * {
+        font-family: oswald, raleway, montserrat;
+      }
+
+      .container {
+        box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.23),
+          0 6px 6px 0 rgba(0, 0, 0, 0.16);
+        margin-top: 40px;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        background-color: #fff;
+        border: 1px solid hsla(0, 0%, 74.5%, 0.63);
+        padding: 0.8rem 1.2rem;
+        outline: 0;
+        border-radius: 3px;
+        -webkit-transition: border-color 0.2s ease-out;
+        transition: border-color 0.2s ease-out;
+      }
+    </style>
+
+    <style id="jnl-decode-styles">
+      .hovered:hover {
+        filter: none;
+      }
+
+      .hovered:hover textarea {
+        background-color: #f5f5f5;
+        filter: none;
+      }
+
+      .hovered:hover .jnl-decode-icon {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .jnl-decode-icon {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        margin: 10px;
+
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.2s linear;
+      }
+
+      .jnl-decode-textarea {
+        resize: none;
+      }
+
+      .jnl-decode-input-area:focus {
+        background-color: #f5f5f5;
+        border-bottom: 3px solid #0a6fe2;
+        padding-bottom: 0.6rem;
+        padding-bottom: calc(0.8rem - 2px);
+      }
+
+      .jnl-decode-category {
+        color: rgb(64, 64, 64);
+        font-size: 14px;
+        line-height: 20px;
+        margin-left: 0em;
+        padding: 10px 30px 0px 30px;
+      }
+
+      .jnl-decode-category-row {
+        display: inline-block;
+        width: 100%;
+        padding: 10px 30px 0px 30px;
+        margin-left: 0em;
+        height: 46px;
+      }
+
+      /* from the "create alert" button here: https://jobs.acs.org/search/?createNewAlert=false&q=ff&locationsearch= */
+      .jnl-decode-btn {
+        display: inline-block;
+        margin-bottom: 0;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        touch-action: manipulation;
+        cursor: pointer;
+        border: 1px solid transparent;
+        cursor: pointer;
+        background-color: rgba(20, 92, 158, 1);
+        color: #ffffff;
+        font-weight: 400;
+        user-select: none;
+        padding: 6px 12px;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        font-size: 16px;
+        touch-action: manipulation;
+      }
+      .jnl-decode-btn:hover {
+        background-color: rgba(0, 133, 199, 1);
+        text-decoration: underline;
+      }
+      .jnl-decode-btn:focus {
+        color: rgb(255, 255, 255) !important;
+      }
+    </style>
+    <!-- <script type="module" src="widget.js"></script> -->
+    <script id="asset-specific-js">
+      window.onload = function () {
+        // Set favicon
+        var favicon = document.createElement("link");
+        favicon.type = "image/x-icon";
+        favicon.rel = "shortcut icon";
+        favicon.href =
+          "https://assets.acs.org/v2.0/acs-bootstrap/images/favicon.ico";
+        document.getElementsByTagName("head")[0].appendChild(favicon);
+      };
+    </script>
+  </head>
+  <body
+    class="elq-lp"
+    style="
+      min-width: 260px;
+      min-height: 100%;
+      padding: 0;
+      margin: 0 auto;
+      background: linear-gradient(to right, #00a3e0, #00bfb3);
+    "
+  >
+    <div
+      class="color-wrap"
+      style="max-width: 1080px; width: 100%; position: relative; margin: 0 auto"
+    >
+      <div class="container" style="width: 100%">
+        <div class="row row-0" style="background: transparent; margin: 0 auto">
+          <div
+            class="column col-xs-12 col-sm-12 col-0"
+            style="
+              vertical-align: top;
+              background: transparent;
+              text-align: left;
+              font-size: 12px;
+              font-family: Arial, Helvetica, sans-serif;
+              color: #000000;
+            "
+          >
+            <div
+              style="
+                background-color: transparent;
+                line-height: 18px;
+                padding: 0px 0px 0px 0px;
+              "
+              class="elq-code-cell cell cell-0"
+            >
+              <div style="display: inline-block; width: 100%">
+                <link
+                  href="https://assets.acs.org/v2.0/acs-bootstrap/images/favicon.ico"
+                  rel="shortcut icon"
+                /><link
+                  rel="shortcut icon"
+                  type="image/x-icon"
+                  href="https://assets.acs.org/v2.0/acs-bootstrap/images/favicon.ico"
+                /><link
+                  href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;0,900;1,200;1,400;1,700;1,900&amp;display=swap"
+                  rel="stylesheet"
+                />
+              </div>
+            </div>
+            <div
+              class="elq-image-cell cell cell-1"
+              style="
+                background-color: #ffffff;
+                line-height: 0;
+                padding: 20px 25px 20px 30px;
+                text-align: left;
+              "
+            >
+              <img
+                src="https://images.acspubs.org/EloquaImages/clients/AmericanChemicalSociety/%7B6bcf1f99-f67b-460d-8cb5-3bf923bfd4b6%7D_ACSPubs_tagline-40px.png"
+                style="width: 100%; height: auto; max-width: 240px"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="row row-1"
+          style="
+            background: #ffffff;
+            border-top: 5px solid #145c9e;
+            margin: 0 auto;
+          "
+        >
+          <div
+            class="column col-xs-12 col-sm-12 col-0"
+            style="
+              vertical-align: top;
+              background: transparent;
+              text-align: left;
+              font-family: Arial, Helvetica, sans-serif;
+              font-size: 12px;
+              color: #000000;
+            "
+          >
+            <div
+              style="
+                background-color: #ffffff;
+                line-height: 18px;
+                padding: 30px 25px 10px 30px;
+              "
+              class="elq-text-cell cell cell-0"
+            >
+              <div style="display: inherit; width: 100%">
+                <div
+                  data-lineheight="1.0"
+                  style="margin-left: 0em; line-height: 24px"
+                >
+                  <strong style="color: rgb(20, 92, 158); font-size: 24px"
+                    >Journal Name, CODEN, and Two Letter Code Decoder</strong
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- end of title row -->
+
+        <div class="row row-2" style="background: #ffffff; margin: 0 auto">
+          <div
+            class="col-0 col-sm-4 col-lg-4 col-md-4 col-xs-4"
+            style="
+              vertical-align: top;
+              background: transparent;
+              background-color: #ffffff;
+              text-align: left;
+              font-size: 12px;
+              font-family: Arial, Helvetica, sans-serif;
+              color: #000000;
+            "
+          >
+            <div
+              class="elq-form-cell cell cell-0"
+              style="background-color: transparent; line-height: 18px"
+            >
+              <div
+                class="jnl-decode-category-row"
+                data-lineheight="1.0"
+                style="display: inline-block"
+              >
+                <div class="col-xs-8 col-sm-8 col-md-8" style="height: 36px">
+                  <span
+                    id="jnl-decode-input-category-name"
+                    style="
+                      font-size: 18;
+                      display: inline-block;
+                      line-height: 36px;
+                      height: 36px;
+                      vertical-align: bottom;
+                    "
+                  >
+                  </span>
+                </div>
+                <div
+                  class="col-xs-4 col-sm-4 col-md-4"
+                  style="height: 32px; display: flex; justify-content: flex-end"
+                >
+                  <button
+                    class="jnl-decode-btn"
+                    style="height: auto"
+                    value="0"
+                    onclick="reset()"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
+              <div
+                class="hovered elq-code-cell cell cell-2"
+                style="
+                  width: 100%;
+                  display: inline-block;
+                  position: relative;
+                  background-color: transparent;
+                  padding: 5px 30px 20px 30px;
+                "
+              >
+                <textarea
+                  class="jnl-decode-input-area jnl-decode-textarea"
+                  id="jnl-decode-input-text-area"
+                  style="width: 100%"
+                  height="1em"
+                  rows="2"
+                  onkeydown="run(this, event)"
+                  onpaste="run(this, event)"
+                  placeholder="Data to convert"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <!-- End of input area  -->
+          <div
+            class="col-1 col-sm-4 col-lg-4 col-md-4 col-xs-4"
+            style="
+              vertical-align: top;
+              background: transparent;
+              background-color: #ffffff;
+              text-align: left;
+              font-size: 12px;
+              font-family: Arial, Helvetica, sans-serif;
+              color: #000000;
+            "
+          >
+            <div
+              class="elq-form-cell cell cell-0"
+              style="background-color: transparent; line-height: auto"
+            >
+              <div class="jnl-decode-category-row" data-lineheight="1.0">
+                <span
+                  class="jnl-decode-output-category"
+                  id="jnl-decode-output-category-name-1"
+                  style="font-size: 18"
+                ></span>
+                <span
+                  class="jnl-decode-output-category"
+                  style="font-size: 13; visibility: hidden"
+                  id="jnl-decode-output-category-copy-1"
+                  >(Click to copy)</span
+                >
+              </div>
+              <div
+                class="hovered elq-code-cell cell cell-2"
+                style="
+                  width: 100%;
+                  display: inline-block;
+                  position: relative;
+                  background-color: transparent;
+                  padding: 5px 30px 20px 30px;
+                "
+              >
+                <textarea
+                  class="jnl-decode-output-area jnl-decode-textarea"
+                  id="jnl-decode-output-area-1"
+                  readonly
+                  height="1em"
+                  rows="2"
+                  style="width: 100%"
+                  onmousedown="click_to_copy(this)"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-1 col-sm-4 col-lg-4 col-md-4 col-xs-4"
+            style="
+              vertical-align: top;
+              background: transparent;
+              background-color: #ffffff;
+              text-align: left;
+              font-size: 12px;
+              font-family: Arial, Helvetica, sans-serif;
+              color: #000000;
+            "
+          >
+            <div
+              class="elq-form-cell cell cell-0"
+              style="background-color: transparent; line-height: 18px"
+            >
+              <div class="jnl-decode-category-row" data-lineheight="1.0">
+                <span
+                  class="jnl-decode-output-category"
+                  id="jnl-decode-output-category-name-2"
+                  style="font-size: 18"
+                ></span>
+                <span
+                  class="jnl-decode-output-category"
+                  style="font-size: 13; visibility: hidden"
+                  id="jnl-decode-output-category-copy-2"
+                  >(Click to copy)</span
+                >
+              </div>
+              <div
+                class="hovered elq-code-cell cell cell-2"
+                style="
+                  width: 100%;
+                  display: inline-block;
+                  position: relative;
+                  background-color: transparent;
+                  padding: 5px 30px 20px 30px;
+                "
+              >
+                <textarea
+                  class="jnl-decode-output-area jnl-decode-textarea"
+                  id="jnl-decode-output-area-2"
+                  readonly
+                  height="1em"
+                  rows="2"
+                  style="width: 100%"
+                  onmousedown="click_to_copy(this)"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Privacy Policy -->
+        <div class="row row-4" style="background: #ffffff; margin: 0 auto">
+          <div
+            class="column col-xs-12 col-sm-12 col-0"
+            style="
+              vertical-align: top;
+              background: transparent;
+              text-align: left;
+              font-size: 12px;
+              font-family: Arial, Helvetica, sans-serif;
+              color: #000000;
+            "
+          >
+            <div
+              style="
+                height: 30px;
+                background-color: transparent;
+                line-height: 18px;
+              "
+              class="elq-space-cell cell cell-0"
+            ></div>
+            <div
+              style="
+                background-color: transparent;
+                line-height: 18px;
+                padding: 10px 10px 10px 10px;
+                border-top: 5px solid #145c9e;
+              "
+              class="elq-external-cell cell cell-1"
+            >
+              <div
+                class="no-selection replaceable-content-renderer"
+                style="
+                  display: inline-block;
+                  width: 100%;
+                  word-wrap: break-word;
+                  overflow-wrap: break-word;
+                "
+              >
+                <p
+                  style="
+                    margin: 0;
+                    font-size: 12px;
+                    line-height: 27px;
+                    font-family: Arial, sans-serif;
+                    text-align: center;
+                  "
+                >
+                  &copy;&nbsp;2021&nbsp;American Chemical Society.
+                  <a
+                    href="https://www.acs.org/content/acs/en/privacy.html?elqTrackId=a1d0e25b380d44158ae8b990c7e31450&elq=00000000000000000000000000000000&elqaid=2658&elqat=2&elqCampaignId=&elqcst=272&elqcsid=2009"
+                    style="
+                      font-size: 12px;
+                      line-height: 27px;
+                      font-family: Arial, sans-serif;
+                    "
+                    >View our Privacy Policy</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://images.acspubs.org/Web/AmericanChemicalSociety/{4887161c-3fa1-40d1-87c5-2282737f27b6}_autosize.min.js"></script>
+  <script>
+    autosize([
+      ...document.getElementsByClassName("jnl-decode-output-area"),
+      ...document.getElementsByClassName("jnl-decode-input-area"),
+    ]);
+  </script>
+</html>

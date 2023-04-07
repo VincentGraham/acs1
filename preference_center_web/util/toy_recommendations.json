@@ -1,0 +1,21 @@
+[
+  { "code": "tdNGKe", "recommendations": "tdNGKe,f0e5S2,iL1xUG,UqyQB8,91fklS" },
+  {
+    "code": "f0e5S2",
+    "recommendations": "tdNGKe,f0e5S2,iL1xUG,UqyQB8,91fklS,1N70W3,3yxCz9,2EB0gC"
+  },
+  { "code": "iL1xUG", "recommendations": "tdNGKe,f0e5S2" },
+  { "code": "UqyQB8", "recommendations": "tdNGKe" },
+  { "code": "91fklS", "recommendations": "tdNGKe" },
+  {
+    "code": "1N70W3",
+    "recommendations": "tdNGKe,f0e5S2,iL1xUG,UqyQB8,91fklS,1N70W3,3yxCz9,2EB0gC,j4pjVG"
+  },
+  { "code": "3yxCz9", "recommendations": "tdNGKe,f0e5S2" },
+  { "code": "2EB0gC", "recommendations": "tdNGKe,f0e5S2,iL1xUG,UqyQB8" },
+  {
+    "code": "j4pjVG",
+    "recommendations": "tdNGKe,f0e5S2,iL1xUG,UqyQB8,91fklS,1N70W3,3yxCz9,2EB0gC,j4pjVG"
+  },
+  { "code": "QE35un", "recommendations": "tdNGKe,f0e5S2,iL1xUG,UqyQB8" }
+]
